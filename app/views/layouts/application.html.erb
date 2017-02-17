@@ -1,14 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <title>Microblog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MICROBLOG</title>
+    <%= stylesheet_link_tag    'application', :media => 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <script type="text/javascript">
+    $(document).ready(function(){
+      setTimeout(function(){
+        $('.alert').remove();
+      }, 2500);
+     })
+  </script>
   <body>
-    <%= yield %>
+      <nav class="navbar-inner">
+          <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="brand">MICROBLOG</div>
+                <ul class="nav nav-pills">
+                  <% if user_signed_in? %>
+                    <li class="active"><a href="/users/<%= current_user.id %>/posts">Home</a></li>
+                    <li class="active"><a href="/users/<%= current_user.id %>/posts/new"><%=t 'post.new'%></a></li>
+                  <% end %>
+                    <li class="active"><a href="/users"><%=t 'user.find'%></a></li>
+                  <% if user_signed_in? %>
+                    <li class="active"><a href="/users/edit"><%=t 'user.edit'%></a></li>
+                  <% end %>
+                </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="main" role="main">
+        <div class="container">
+          <%= render 'layouts/messages' %>
+          <% if user_signed_in? %>
+            <%=t 'user.logged_in'%> <strong><%= current_user.name%></strong>
+          <% end %>
+          <br>
+          <%= link_to_unless_current 'English', locale: 'en' %> |
+          <%= link_to_unless_current 'Portuguese', locale: 'pt-BR' %>
+          <% if user_signed_in? %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-lg outline logout'  %>
+          <% end %>
+          <%= yield %>
+        </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
   </body>
 </html>
