@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :posts
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users
+
+  shallow do
+    resources :users do
+      resources :posts do
+        resources :comments
+      end
+    end
+  end
+
+  root to: 'posts#index'
 end
