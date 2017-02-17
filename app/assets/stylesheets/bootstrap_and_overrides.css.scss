@@ -1,0 +1,73 @@
+@import "bootstrap";
+body {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.pager .next > a, .pager .next > span {
+    float: none;
+}
+
+.brand{
+	font-size: 30px;
+	color: #C0C0C0;
+}
+
+.post-blog{
+	margin-top: 20px;
+}
+
+.pager{
+	font-size: 20px;
+}
+
+.navbar{
+    height:100px;
+    margin-top:-60px;
+    padding: 20px;
+    position:relative;
+    background-color: rgb(51, 51, 51);
+}
+
+.nav{
+	margin-top: 10px;
+	allign: right;
+}
+
+.visible-lg{
+	font-size:18px;
+}
+
+.conteudo-post{
+	word-wrap: break-word;
+	font-size: 20px;
+}
+
+.btn.outline {
+    background: none;
+    padding: 3px 10px;
+}
+
+.btn-primary.outline {
+    border: 2px solid #0099cc;
+    color: #0099cc;
+}
+
+.btn-danger.outline {
+    border: 2px solid red;
+    color: red;
+}
+
+.info-usuario{
+	font-size: 20px;
+}
+
+.campo-pesquisa{
+    padding: 3px 10px;
+}
+
+.btn.logout{
+    position:absolute;
+    top: 102px;
+    left: 1410px;
+}
