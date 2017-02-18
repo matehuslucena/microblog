@@ -14,14 +14,15 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% unless current_user.following['users'].include?("#{user.id}") %>
+          <td><%= link_to 'Follow', user_follow_path(user) %></td>
+        <% else %>
+          <td><%= link_to 'Unfollow', user_unfollow_path(user) %></td>
+        <% end %>
+        <td><%= link_to 'Posts', user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>
