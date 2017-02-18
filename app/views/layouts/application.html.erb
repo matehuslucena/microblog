@@ -22,12 +22,12 @@
                 <div class="brand">MICROBLOG</div>
                 <ul class="nav nav-pills">
                   <% if user_signed_in? %>
-                    <li class="active"><a href="/users/<%= current_user.id %>/posts">Home</a></li>
-                    <li class="active"><a href="/users/<%= current_user.id %>/posts/new"><%=t 'post.new'%></a></li>
+                    <li class="active"><%= link_to 'Home', user_posts_path(current_user) %></li>
+                    <li class="active"><%= link_to 'New Post', new_user_post_path(current_user) %></li>
                   <% end %>
-                    <li class="active"><a href="/users"><%=t 'user.find'%></a></li>
+                    <li class="active"><%= link_to 'Find User', users_path %></li>
                   <% if user_signed_in? %>
-                    <li class="active"><a href="/users/edit"><%=t 'user.edit'%></a></li>
+                    <li class="active"><%= link_to 'Edit Account', edit_user_registration_path %></li>
                   <% end %>
                 </ul>
             </div>
@@ -41,8 +41,6 @@
             <%=t 'user.logged_in'%> <strong><%= current_user.name%></strong>
           <% end %>
           <br>
-          <%= link_to_unless_current 'English', locale: 'en' %> |
-          <%= link_to_unless_current 'Portuguese', locale: 'pt-BR' %>
           <% if user_signed_in? %>
             <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-lg outline logout'  %>
           <% end %>
