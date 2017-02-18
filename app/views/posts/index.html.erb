@@ -1,18 +1,16 @@
 <p id="notice"><%= notice %></p>
-
-
-    <% @posts.each do |post| %>
-    <div class="well">
-      <article class="post-blog">
-        <% if current_user.id == post.user.id %>
+  <% @posts.each do |post| %>
+  <div class="well">
+    <article class="post-blog">
+      <p><%= post.body%></p>
+      <% if current_user.id == post.user.id %>
         <%= link_to I18n.t('link.show'), post_path(post) , :class => "btn btn-primary btn-lg outline"%>
         <%= link_to I18n.t('link.edit'), edit_post_path(post), :class => "btn btn-primary btn-lg outline" %>
         <%= link_to I18n.t('link.destroy'), post, method: :delete, :class => "btn btn-primary btn-lg outline" , :data => {:confirm => 'Are you sure?'}  %>
-        <% end %>
-      </article>
-    </div>
-    <% end %>
-
+      <% else %>
+        <%= link_to I18n.t('link.comments'), post_comments_path(post) , :class => "btn btn-primary btn-lg outline"%>
+      <% end %>
+    </article>
+  </div>
+  <% end %>
 <br>
-
-<%= link_to 'New Post', new_user_post_path(@user) %>
