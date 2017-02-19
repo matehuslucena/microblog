@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.0.1'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -20,7 +19,10 @@ gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'rspec', '~> 3.5'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'faker'
 end
 
 group :development do
