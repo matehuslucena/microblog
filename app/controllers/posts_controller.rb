@@ -5,9 +5,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.where(user_id: current_user.id)
-    current_user.following['users'].each do |user_id|
-      following_posts = Post.where(user_id: user_id)
-      @posts = following_posts.or(@posts)
+    following_users.each do |user_id|
+      user_posts = Post.where(user_id: user_id)
+      @posts = user_posts.or(@posts)
     end
   end
 
@@ -42,7 +42,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: 'Post was successfully destroyed.'
+
+    redirect_to user_posts_url(current_user), notice: 'Post was successfully destroyed.'
   end
 
   private
@@ -56,5 +57,9 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:user_id, :body)
+    end
+
+    def following_users
+      current_user.following['users']
     end
 end
