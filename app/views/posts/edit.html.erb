@@ -2,5 +2,5 @@
 
 <%= render 'form', post: @post %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', user_posts_path(current_user) %>
+<%= link_to 'Show', @post, class: "btn btn-primary outline" %> 
+<%= link_to 'Back', user_posts_path(current_user), class: "btn btn-primary outline" %>
