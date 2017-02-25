@@ -16,12 +16,12 @@
         <td><%= user.name %></td>
         <% if user_signed_in?%>
           <% unless current_user.following['users'].include?("#{user.id}") %>
-            <td><%= link_to 'Follow', user_follow_path(user) %></td>
+            <td><%= link_to 'Follow', user_follow_path(user), class: "btn btn-primary outline" %></td>
           <% else %>
-            <td><%= link_to 'Unfollow', user_unfollow_path(user) %></td>
+            <td><%= link_to 'Unfollow', user_unfollow_path(user), class: "btn btn-danger outline", data: {:confirm => 'Are you sure?'}  %></td>
           <% end %>
         <% end %>
-        <td><%= link_to 'Posts', user_path(user) %></td>
+        <td><%= link_to 'Posts', user_path(user), class: "btn btn-primary outline" %></td>
       </tr>
     <% end %>
   </tbody>
