@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.where(user_id: current_user.id)
-    following_users.each do |user_id|
+    @user.following_users_posts.each do |user_id|
       user_posts = Post.where(user_id: user_id)
       @posts = user_posts.or(@posts)
     end
@@ -57,9 +57,5 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:user_id, :body)
-    end
-
-    def following_users
-      current_user.following['users']
     end
 end
