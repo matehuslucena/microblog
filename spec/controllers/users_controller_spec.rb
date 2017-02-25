@@ -3,8 +3,8 @@ require 'rails_helper'
 describe UsersController, type: :controller do
   shared_examples 'must redirected to signin' do
     it 'be redirected to signin' do
-      route
-      
+      action
+
       expect(response).to redirect_to(new_user_session_path)
     end
   end
@@ -19,7 +19,7 @@ describe UsersController, type: :controller do
 
   describe 'GET #follow' do
     let(:user) { create :another_user }
-    let(:route) { get :follow, params:{user_id: user} }
+    let(:action) { get :follow, params:{user_id: user} }
 
     context 'when user is not logged in' do
       include_examples 'must redirected to signin'
@@ -29,7 +29,7 @@ describe UsersController, type: :controller do
       sign_in
 
       it 'let the user follow another user' do
-        route
+        action
 
         expect(response).to redirect_to(users_path)
       end
@@ -38,7 +38,7 @@ describe UsersController, type: :controller do
 
   describe 'GET #unfollow' do
     let(:user) { create :another_user }
-    let(:route) { get :unfollow, params:{user_id: user} }
+    let(:action) { get :unfollow, params:{user_id: user} }
 
     context 'when user is not logged in' do
       include_examples 'must redirected to signin'
@@ -48,7 +48,7 @@ describe UsersController, type: :controller do
       sign_in
 
       it 'let the user unfollow another user' do
-        route
+        action
 
         expect(response).to redirect_to(users_path)
       end
