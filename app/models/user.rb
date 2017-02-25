@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   def following_users_posts
     self.following['users'].map do |user_id|
-      User.find(user_id).posts
+      Post.where(user_id: user_id)
     end
   end
 end
