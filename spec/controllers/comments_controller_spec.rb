@@ -23,7 +23,7 @@ describe CommentsController, type: :controller do
       sign_in
 
       let!(:post) { create :post, user: subject.current_user }
-      let(:comment){ create :comment }
+      let(:comment){ create :comment, user: subject.current_user }
 
       it 'populates an array of comments' do
         action
@@ -43,7 +43,7 @@ describe CommentsController, type: :controller do
     let(:action) { get :show, params:{ id: comment } }
 
     context 'when user is not logged in' do
-      let(:comment) { create :comment }
+      let(:comment) { create :comment, user: (create :user, email: 't@t.com') }
 
       include_examples 'must redirected to signin'
     end
@@ -51,7 +51,7 @@ describe CommentsController, type: :controller do
     context 'when user is logged in' do
       sign_in
 
-      let!(:comment) { create :comment }
+      let!(:comment) { create :comment, user: subject.current_user }
 
       it 'assigns the requested comment to @comment' do
         action
@@ -72,7 +72,6 @@ describe CommentsController, type: :controller do
     let(:action) { get :new, params:{ post_id: post } }
 
     context 'when user is not logged in' do
-
       include_examples 'must redirected to signin'
     end
 
@@ -137,7 +136,7 @@ describe CommentsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:comment) { create :comment }
+    let(:comment) { create :comment, user: (create :user, email: 't@t.com') }
     let(:action) { put :update, params:{ id: comment } }
 
     context 'when user is not logged in' do
@@ -146,7 +145,8 @@ describe CommentsController, type: :controller do
 
     context 'when user is logged in' do
       sign_in
-      let(:comment) { create :comment }
+
+      let(:comment) { create :comment, user: subject.current_user }
 
       context 'valid attributes' do
         let(:action) { put :update, params:{ id: comment, comment:{ body: 'abcde' } } }
@@ -190,7 +190,7 @@ describe CommentsController, type: :controller do
     let(:action) { delete :destroy, params:{ id: comment } }
 
     context 'when user is not logged in' do
-      let(:comment) { create :comment }
+      let(:comment) { create :comment, user: (create :user, email: 't@t.com') }
 
       include_examples 'must redirected to signin'
     end
@@ -198,7 +198,7 @@ describe CommentsController, type: :controller do
     context 'when user is logged in' do
       sign_in
 
-      let!(:comment) { create :comment }
+      let!(:comment) { create :comment, user: subject.current_user }
       it 'deletes the comment' do
         expect{
           action
