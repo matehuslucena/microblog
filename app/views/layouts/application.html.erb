@@ -9,43 +9,37 @@
     <%= csrf_meta_tags %>
   </head>
   <script type="text/javascript">
-    $(document).ready(function(){
-      setTimeout(function(){
-        $('.alert').remove();
-      }, 2500);
-     })
+
   </script>
   <body>
-      <nav class="navbar-inner">
-          <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="brand">MICROBLOG</div>
-                <ul class="nav nav-pills">
-                  <% if user_signed_in? %>
-                    <li class="active"><%= link_to 'Home', user_posts_path(current_user) %></li>
-                    <li class="active"><%= link_to 'New Post', new_user_post_path(current_user) %></li>
-                  <% end %>
-                    <li class="active"><%= link_to 'Find User', users_path %></li>
-                  <% if user_signed_in? %>
-                    <li class="active"><%= link_to 'Edit Account', edit_user_registration_path %></li>
-                  <% end %>
-                </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <div id="main" role="main">
+    <nav class="navbar-inner">
+      <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-          <%= render 'layouts/messages' %>
-          <% if user_signed_in? %>
-            <%=t 'user.logged_in'%> <strong><%= current_user.name%></strong>
-          <% end %>
-          <br>
-          <% if user_signed_in? %>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-lg outline logout'  %>
-          <% end %>
-          <%= yield %>
-        </div> <!--! end of .container -->
+            <div class="brand">MICROBLOG</div>
+            <ul class="nav nav-pills">
+              <% if user_signed_in? %>
+                <li class="active"><%= link_to 'Home', user_posts_path(current_user) %></li>
+                <li class="active"><%= link_to 'New Post', new_user_post_path(current_user) %></li>
+              <% end %>
+                <li class="active"><%= link_to 'Find User', users_path %></li>
+              <% if user_signed_in? %>
+                <li class="active"><%= link_to 'Edit Account', edit_user_registration_path %></li>
+              <% end %>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="main" role="main">
+      <div class="container body-container">
+        <% if user_signed_in? %>
+          <%=t 'user.logged_in'%> <strong><%= current_user.name%></strong>
+        <% end %>
+        <br>
+        <% if user_signed_in? %>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'btn btn-danger btn-lg outline logout'  %>
+        <% end %>
+        <%= yield %>
+      </div> <!--! end of .container -->
     </div> <!--! end of #main -->
   </body>
 </html>
