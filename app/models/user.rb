@@ -5,7 +5,6 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   def follow user_id
-    self.following = { 'users': [] } unless self.following
     self.following['users'] << user_id
     self.save
   end
@@ -15,9 +14,9 @@ class User < ApplicationRecord
     self.save
   end
 
-  def get_following_posts
-    self.following['users'].each do |user_id|
-      following_posts = Post.where(user_id: user_id)
+  def following_users_posts
+    self.following['users'].map do |user_id|
+      User.find(user_id).posts
     end
   end
 end
