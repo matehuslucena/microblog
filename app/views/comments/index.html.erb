@@ -2,7 +2,7 @@
 
 <h1>Comments</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -14,11 +14,11 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.name %></td>
+        <td><%= comment.user.name %></td>
         <td><%= comment.body %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.id == comment.user.id %>
+          <td class="action-td"><%= link_to 'Destroy', comment, method: :delete, class: "btn btn-primary outline", data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,5 +26,5 @@
 
 <br>
 
-<%= link_to 'New Comment', new_post_comment_path %> |
-<%= link_to 'Back', user_posts_path(current_user) %>
+<%= link_to 'New Comment', new_post_comment_path, class: "btn btn-primary outline" %> <br><br>
+<%= link_to 'Back', user_posts_path(current_user), class: "btn btn-primary outline" %>

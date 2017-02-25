@@ -12,16 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Save', class: "btn btn-primary outline" %>
   </div>
 <% end %>
