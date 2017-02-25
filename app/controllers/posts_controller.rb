@@ -5,10 +5,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.where(user_id: current_user.id)
-    @user.following_users_posts.each do |user_id|
-      user_posts = Post.where(user_id: user_id)
-      @posts = user_posts.or(@posts)
+    following_posts = @user.following_users_posts
+    following_posts.each do |following_post|
+      @posts = following_post.or(@posts)
     end
+    @posts.order(:updated_at)
   end
 
   def show
