@@ -2,7 +2,8 @@
   <% @posts.each do |post| %>
   <div class="well">
     <article class="post-blog">
-      <p><%= post.body%></p>
+      <p class="posts_time"><%=l post.created_at, format: :br %></p>
+      <p class="posts"><%= post.body%></p>
       <% if current_user.id == post.user.id %>
         <%= link_to I18n.t('link.show'), post_path(post) , class: "btn btn-primary outline"%>
         <%= link_to I18n.t('link.edit'), edit_post_path(post), class: "btn btn-primary outline" %>
