@@ -4,6 +4,16 @@ body {
   width: 100%;
 }
 
+.body-container{
+  padding-left: 0px;
+  padding-top: 50px;
+  margin-left: 356px;
+}
+
+#notice{
+  margin-left: 0px;
+}
+
 .pager .next > a, .pager .next > span {
     float: none;
 }
@@ -23,15 +33,13 @@ body {
 
 .navbar{
     height:100px;
-    margin-top:-60px;
     padding: 20px;
-    position:relative;
     background-color: rgb(51, 51, 51);
 }
 
 .nav{
 	margin-top: 10px;
-	allign: right;
+	margin-left: 0px;
 }
 
 .visible-lg{
