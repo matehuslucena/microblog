@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def follow
     current_user.follow(params[:user_id])
 
-    redirect_to users_path
+    redirect_to users_path, notice: 'Success follow!'
   end
 
   def unfollow
