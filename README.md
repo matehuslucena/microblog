@@ -1,24 +1,20 @@
-# README
+# MICROBLOG
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicação desenvolvido para ser um microblog pessoal, onde o usuário pode escrever pequenos textos e compartilhar com os outros usuário
+cadastrados.
 
-Things you may want to cover:
+Stack da aplicação:
+- Rails 5
+- Ruby 2.3.3
+- Postgres
 
-* Ruby version
+Para instalar a aplicação faça um clone do repositório, entre no diretório e rode o comando `bundle install` para instalar as dependências do
+projeto.
 
-* System dependencies
+Após rodar o comando acima abra o arquivo `config\database.yml` e altera as configurações de usuário e senha
+configuradas no eu postgres. Após configurar os acessos ao banco execute `rails db:create db:migrate` para criar o banco e as tabelas.
 
-* Configuration
+Após esses passos erga o servidor local com o comando `rails s` e pronto é só acessar o sistema através da url `http://localhost:3000`.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+O sistema pode ser acessado através da url `http://microblog-helabs.herokuapp.com`
+ 
