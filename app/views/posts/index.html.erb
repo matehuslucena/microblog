@@ -8,9 +8,8 @@
         <%= link_to I18n.t('link.show'), post_path(post) , class: "btn btn-primary outline"%>
         <%= link_to I18n.t('link.edit'), edit_post_path(post), class: "btn btn-primary outline" %>
         <%= link_to I18n.t('link.destroy'), post, method: :delete, class: "btn btn-primary outline", data: {:confirm => 'Are you sure?'}  %>
-      <% else %>
-        <%= link_to I18n.t('link.comments'), post_comments_path(post) , class: "btn btn-primary outline"%>
       <% end %>
+      <%= link_to I18n.t('link.comments'), post_comments_path(post) , class: "btn btn-primary outline"%>
     </article>
   </div>
   <% end %>
