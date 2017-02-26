@@ -23,7 +23,7 @@ describe CommentsController, type: :controller do
       sign_in
 
       let!(:post) { create :post, user: subject.current_user }
-      let(:comment){ create :comment, user: subject.current_user }
+      let(:comment){ create :comment, post: post, user: subject.current_user }
 
       it 'populates an array of comments' do
         action
