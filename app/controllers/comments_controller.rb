@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:index, :create, :new]
 
   def index
-    @comments = Comment.all
+    @comments = Comment.where(post_id: @post)
   end
 
   def show
