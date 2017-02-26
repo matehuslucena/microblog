@@ -1,11 +1,10 @@
 
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:index, :create, :new, :show]
 
   def index
     @posts = Post.all.where(user_id: current_user.id)
-    following_posts = @user.following_users_posts
+    following_posts = current_user.following_users_posts
     following_posts.each do |following_post|
       @posts = following_post.or(@posts)
     end
@@ -50,10 +49,6 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.find(params[:id])
-    end
-
-    def set_user
-      @user = current_user
     end
 
     def post_params
