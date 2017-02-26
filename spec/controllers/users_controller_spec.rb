@@ -2,18 +2,28 @@ require 'rails_helper'
 
 describe UsersController, type: :controller do
   shared_examples 'must redirected to signin' do
-    it 'be redirected to signin' do
-      action
-
-      expect(response).to redirect_to(new_user_session_path)
-    end
-  end
-
-  describe 'GET #index' do
     it 'must render the index view' do
       get :index
 
       expect(response).to render_template(:index)
+    end
+  end
+
+  describe 'GET #index' do
+    sign_in
+
+    it 'must render the index view' do
+      get :index
+
+      expect(response).to render_template(:index)
+    end
+
+    context 'when send a search params' do
+      it 'must render index view' do
+        get :index, params: { search: 'abc' }
+
+        expect(response).to render_template(:index)
+      end
     end
   end
 
