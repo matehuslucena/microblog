@@ -20,12 +20,23 @@ describe PostsController, type: :controller do
 
     context 'when user is logged in' do
       sign_in
+
+      let(:user_2){ create :another_user, email: 't@t.com' }
+      let(:post2){ create :post, user: user_2 }
       let!(:post) { create :post, user: subject.current_user }
 
       it 'populates an array of posts' do
         action
 
         expect(assigns(:posts)).to eq([post])
+      end
+
+      it 'must be post of following users' do
+        subject.current_user.following['users'] << user_2.id
+
+        action
+
+        expect(assigns(:posts)).to eq([post, post2])
       end
 
       it 'renders the :index view' do
